@@ -6,45 +6,34 @@
 /*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:44:57 by lottavi           #+#    #+#             */
-/*   Updated: 2023/01/24 15:55:42 by lottavi          ###   ########.fr       */
+/*   Updated: 2023/01/25 16:33:30 by lottavi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_char_in_set(char c, char const *set)
-{
-	size_t	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
-	size_t	i;
-	size_t	start;
-	size_t	end;
+	int		i;
+	int		j;
+	int		k;
+	char	*buffer;
 
-	start = 0;
-	while (s1[start] && ft_char_in_set(s1[start], set))
-		start++;
-	end = ft_strlen(s1);
-	while (end > start && ft_char_in_set(s1[end - 1], set))
-		end--;
-	str = (char *)malloc(sizeof(*s1) * (end - start + 1));
-	if (!str)
+	if (!s1 || !set)
 		return (NULL);
 	i = 0;
-	while (start < end)
-		str[i++] = s1[start++];
-	str[i] = 0;
-	return (str);
+	j = 0;
+	while (s1[j] && ft_strchr(set, s1[j]) != '\0')
+		j++;
+	k = ft_strlen((char *) s1);
+	while (k > j && ft_strchr(set, s1[k - 1]) != '\0')
+		k--;
+	buffer = (char *) malloc(sizeof(*s1) * (k - j + 1));
+	if (!buffer)
+		return (NULL);
+	i = 0;
+	while (j < k)
+		buffer[i++] = s1[j++];
+	buffer[i] = 0;
+	return ((char *)buffer);
 }
