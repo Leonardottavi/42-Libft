@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfriedri <tfriedri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:14:01 by lottavi           #+#    #+#             */
-/*   Updated: 2023/01/24 15:31:28 by lottavi          ###   ########.fr       */
+/*   Created: 2022/03/22 13:19:50 by tfriedri          #+#    #+#             */
+/*   Updated: 2022/03/22 18:16:36 by tfriedri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	ft_isalpha(int c)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-	{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
-	}
-	return (0);
+	else
+		return (0);
 }

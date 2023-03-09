@@ -3,60 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfriedri <tfriedri@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 16:58:29 by lottavi           #+#    #+#             */
-/*   Updated: 2023/01/24 15:34:56 by lottavi          ###   ########.fr       */
+/*   Created: 2022/04/01 18:16:59 by tfriedri          #+#    #+#             */
+/*   Updated: 2022/08/02 10:12:27 by tfriedri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	lenght_string(int n)
+static void	num_to_str(long nb, int i, int slen, char *str)
 {
-	long int	number;
-	int			len;
+	if (nb > 9)
+	{
+		i++;
+		num_to_str(nb / 10, i, slen, str);
+		str[slen - i] = (nb % 10) + 48;
+		return ;
+	}
+	i++;
+	str[slen - i] = nb + 48;
+	return ;
+}
 
-	number = n;
-	len = 1;
-	if (number < 0)
+static int	numstrlen(long n)
+{
+	int	i;
+
+	i = 0;
+	if (n < 0)
 	{
-		len++;
-		number = -number;
+		i++;
+		n = -n;
 	}
-	while (number >= 10)
+	while (n > 0)
 	{
-		number = number / 10;
-		len++;
+		n = n / 10;
+		i++;
 	}
-	return (len);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char		*stringa;
-	long int	number;
-	long int	len;
+	char	*str;
+	int		slen;
+	long	nb;
 
-	len = lenght_string(n);
-	number = n;
-	stringa = (char *)malloc(len + 1);
-	if (!stringa)
+	nb = n;
+	if (nb != 0)
+		slen = numstrlen(nb);
+	else
+		slen = 1;
+	if (nb < 0)
+		nb = -nb;
+	str = malloc(sizeof(char) * (slen + 1));
+	if (!str)
 		return (NULL);
-	if (number < 0)
-	{
-		number = -number;
-		*stringa = '-';
-	}
-	stringa[len] = '\0';
-	len--;
-	while (number >= 10)
-	{
-		stringa[len] = 48 + (number % 10);
-		number /= 10;
-		len--;
-	}
-	if (number >= 0 && number < 10)
-		stringa[len] = 48 + (number % 10);
-	return (stringa);
+	num_to_str(nb, 0, slen, str);
+	if (n < 0)
+		str[0] = '-';
+	str[slen] = '\0';
+	return (str);
 }

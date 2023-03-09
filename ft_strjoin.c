@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfriedri <tfriedri@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 16:42:43 by lottavi           #+#    #+#             */
-/*   Updated: 2023/01/25 16:28:35 by lottavi          ###   ########.fr       */
+/*   Created: 2022/03/28 16:08:41 by tfriedri          #+#    #+#             */
+/*   Updated: 2022/04/21 09:58:20 by tfriedri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,19 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
-	int		i;
-	int		j;
+	int		l1;
+	int		l2;
+	char	*rstr;
 
 	if (!s1 || !s2)
 		return (NULL);
-	j = 0;
-	i = 0;
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
+	l1 = ft_strlen(s1);
+	l2 = ft_strlen(s2);
+	rstr = (char *)malloc(sizeof(char) * (l1 + l2 + 1));
+	if (!rstr)
 		return (NULL);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	return (str);
+	ft_memcpy(rstr, s1, l1);
+	ft_memcpy(rstr + l1, s2, l2);
+	rstr[l1 + l2] = '\0';
+	return (rstr);
 }

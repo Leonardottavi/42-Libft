@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfriedri <tfriedri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 17:33:20 by lottavi           #+#    #+#             */
-/*   Updated: 2023/01/24 15:34:01 by lottavi          ###   ########.fr       */
+/*   Created: 2022/03/22 14:56:39 by tfriedri          #+#    #+#             */
+/*   Updated: 2022/03/22 18:17:50 by tfriedri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	ft_isprint(int c)
 {
 	if (c >= 32 && c <= 126)
-	{
 		return (1);
-	}
-	return (0);
+	else
+		return (0);
 }

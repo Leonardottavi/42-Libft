@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfriedri <tfriedri@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 13:57:12 by lottavi           #+#    #+#             */
-/*   Updated: 2023/01/24 15:57:30 by lottavi          ###   ########.fr       */
+/*   Created: 2022/03/27 16:54:13 by tfriedri          #+#    #+#             */
+/*   Updated: 2022/04/21 09:59:04 by tfriedri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
-		return (c -= 32);
+		return (c - 32);
 	return (c);
 }

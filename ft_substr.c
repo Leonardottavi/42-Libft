@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfriedri <tfriedri@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 16:40:39 by lottavi           #+#    #+#             */
-/*   Updated: 2023/01/25 16:26:43 by lottavi          ###   ########.fr       */
+/*   Created: 2022/03/28 15:28:28 by tfriedri          #+#    #+#             */
+/*   Updated: 2022/04/21 09:58:57 by tfriedri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ptr;
-	size_t	index;
+	size_t	i;
+	char	*subs;
+	size_t	reallen;
 
+	i = 0;
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen(s))
-		start = ft_strlen(s);
-	if ((start + len) >= ft_strlen(s))
-		len = ft_strlen(s) - start;
-	ptr = malloc(sizeof(char) * (len + 1));
-	if (!ptr)
+	if (ft_strlen(s + start) < len)
+		reallen = ft_strlen(s + start);
+	else
+		reallen = len;
+	subs = (char *)malloc((reallen + 1) * sizeof(char));
+	if (!subs)
 		return (NULL);
-	index = 0;
-	while (index != len)
+	while (i < reallen && ft_strlen(s) >= start)
 	{
-		ptr[index] = *(s + start + index);
-		index++;
+		subs[i] = s[start + i];
+		i++;
 	}
-	ptr[index] = '\0';
-	return (ptr);
+	subs[i] = '\0';
+	return (subs);
 }
